@@ -8,7 +8,11 @@ public class TriangleShould
     [SetUp]
     public void Setup()
     {
+        _isoscelesTriangle = new Triangle(3, 3, 2);
     }
+
+    private Triangle _isoscelesTriangle;
+
 
     [Test]
     public void TriangleExists()
@@ -31,21 +35,19 @@ public class TriangleShould
     [Test]
     public void TriangleSquare()
     {
-        var triangle = new Triangle(3, 3, 2);
         var expected = 0.5 * 2 * Math.Sqrt(8);
-        Assert.That(triangle.Square, Is.EqualTo(expected).Within(1e-6));
+        Assert.That(_isoscelesTriangle.Square, Is.EqualTo(expected).Within(1e-6));
     }
 
     [Test]
     public void TriangleIsRectangular()
     {
-        var triangle1 = new Triangle(3, 4, 5);
-        var triangle2 = new Triangle(3, 3, 2);
+        var triangle = new Triangle(3, 4, 5);
 
         Assert.Multiple(() =>
         {
-            Assert.That(triangle1.IsRectangular, Is.EqualTo(true));
-            Assert.That(triangle2.IsRectangular, Is.EqualTo(false));
+            Assert.That(triangle.IsRectangular, Is.EqualTo(true));
+            Assert.That(_isoscelesTriangle.IsRectangular, Is.EqualTo(false));
         });
     }
 }
